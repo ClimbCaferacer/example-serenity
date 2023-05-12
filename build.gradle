@@ -1,14 +1,14 @@
 defaultTasks 'clean', 'test', 'aggregate'
 
 repositories {
-    mavenLocal()
-    jcenter()
+    mavenCentral()
+
 }
 
 buildscript {
     repositories {
-        mavenLocal()
-        jcenter()
+        mavenCentral()
+
     }
     dependencies {
         classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.24")
@@ -20,8 +20,8 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'net.serenity-bdd.aggregator'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 ext {
     slf4jVersion = '1.7.7'
@@ -30,6 +30,7 @@ ext {
     junitVersion = '4.13.1'
     assertJVersion = '3.8.0'
     logbackVersion = '1.2.3'
+    lombokVersion = '1.18.26'
 }
 
 dependencies {
@@ -42,7 +43,11 @@ dependencies {
             "junit:junit:${junitVersion}",
             "org.assertj:assertj-core:${assertJVersion}",
             "ch.qos.logback:logback-classic:${logbackVersion}",
-            "net.serenity-bdd:serenity-rest-assured:${serenityCoreVersion}"
+            "net.serenity-bdd:serenity-rest-assured:${serenityCoreVersion}",
+            "org.aeonbits.owner:owner-java8:1.0.12"
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    compileOnly        "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
 
 test {
