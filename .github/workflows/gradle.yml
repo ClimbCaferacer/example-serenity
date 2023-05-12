@@ -21,4 +21,4 @@ jobs:
       with:
         java-version: 11
     - name: Build with Gradle
-      run: gradle clean test
+      run: gradle clean test -Denv=common
